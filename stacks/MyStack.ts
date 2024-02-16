@@ -1,4 +1,4 @@
-import path = require("path");
+import path from "path";
 import { StackContext, Function } from "sst/constructs";
 import { build } from "tsup";
 
@@ -10,7 +10,7 @@ export function API({ stack }: StackContext) {
       async beforeBuild(props, out){
         await build({
           entry: [props.handler! + "/*.ts"],
-          outDir: path.join(out, "dist"),
+          outDir: path.join(props.handler!, "dist"),
           // 👇 this also doesn't work the first time, needed to run build twice  
           // outDir: path.join(props.handler!, "dist"),
           format: "esm",
